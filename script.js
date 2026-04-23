@@ -311,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const imgs = content.images
         .map((id, i) =>
           `<img class="gallery-slide${i === 0 ? ' gallery-slide--active' : ''}"
-               src="https://drive.google.com/uc?export=view&id=${id}"
+               src="https://drive.google.com/thumbnail?id=${id}&sz=w800"
                alt="${content.name} screenshot ${i + 1}"
                loading="lazy" />`
         )
