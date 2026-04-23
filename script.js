@@ -182,7 +182,13 @@ const PROJECT_DATA = {
       "Centralized home feed for politician updates and announcements"
     ],
     techStack: ["Flutter", "Dart", "GetX", "REST APIs", "Search & Comparison Algorithms"],
-    images: [],
+    images: [
+      "1Iuyl5qtdptanEzlCL4wTKDZlB3lVDPGI",
+      "1uUuGM7tUse7L73uYnzYTTv87rVa8ajJQ",
+      "1N9BQW8wWPfmROfgOCl82NzpY0WpcYf3H",
+      "1cAqyRMw-1ZZSkvxxOUUYRIJdnU8IW3yD",
+      "1FA1Tihbk9dQe4uZc4V_KhQEtvin4RDLA"
+    ],
     youtubeId: null
   },
   asas: {
