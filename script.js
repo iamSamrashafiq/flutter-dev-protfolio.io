@@ -1,0 +1,185 @@
+// script.js — Portfolio interactivity
+
+// ---------------------------------------------------------------------------
+// Pure utility functions
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns true if scrollY is strictly greater than threshold.
+ * Never throws for any numeric inputs.
+ * @param {number} scrollY
+ * @param {number} threshold
+ * @returns {boolean}
+ */
+function isScrolled(scrollY, threshold) {
+  return scrollY > threshold;
+}
+
+// ---------------------------------------------------------------------------
+// Project data
+// ---------------------------------------------------------------------------
+
+const PROJECT_DATA = {
+  ityrecare: {
+    name: "ItyreCare",
+    description: "ItyreCare is a comprehensive tyre management and roadside assistance app built with Flutter. It connects drivers with nearby service providers in real time, offering tyre health tracking and emergency support. The app integrates Google Maps for live location sharing and Firebase for instant push notifications.",
+    features: [
+      "Real-time roadside assistance request and tracking",
+      "Tyre health monitoring and service history",
+      "Live location sharing with service providers via Google Maps",
+      "Push notifications for request status updates",
+      "In-app chat between driver and technician"
+    ],
+    techStack: ["Flutter", "Dart", "Firebase", "Google Maps API", "FCM", "REST APIs"],
+    youtubeId: null
+  },
+  "sushi-guide": {
+    name: "Sushi Guide",
+    description: "Sushi Guide is a beautifully designed Flutter app that helps sushi enthusiasts discover, learn about, and order their favourite rolls. It features a curated catalogue of sushi types with detailed descriptions, ingredient breakdowns, and pairing suggestions. Users can save favourites and find nearby sushi restaurants.",
+    features: [
+      "Curated sushi catalogue with descriptions and photos",
+      "Ingredient breakdown and allergen information",
+      "Food pairing and sake recommendations",
+      "Nearby restaurant finder with map integration",
+      "Personal favourites list with offline access"
+    ],
+    techStack: ["Flutter", "Dart", "Firebase Firestore", "Google Maps API", "Provider"],
+    youtubeId: null
+  },
+  lama: {
+    name: "Lama",
+    description: "Lama is a social learning platform built with Flutter that connects students and tutors for on-demand academic help. It supports live video sessions, shared whiteboards, and structured course content. Firebase powers real-time messaging and session scheduling.",
+    features: [
+      "On-demand tutor matching by subject and availability",
+      "Live video sessions with shared whiteboard",
+      "Structured course modules and progress tracking",
+      "Real-time in-app messaging between students and tutors",
+      "Session ratings and tutor review system"
+    ],
+    techStack: ["Flutter", "Dart", "Firebase", "WebSockets", "REST APIs", "GetX"],
+    youtubeId: null
+  },
+  junction: {
+    name: "Junction",
+    description: "Junction is a community-driven event discovery app that helps users find and join local events, meetups, and hackathons. Built with Flutter, it uses location services to surface nearby events and lets organisers publish and manage their listings. Attendees can RSVP, receive reminders, and connect with other participants.",
+    features: [
+      "Location-based event discovery and filtering",
+      "Event creation and management for organisers",
+      "RSVP and attendee management",
+      "In-app networking and attendee profiles",
+      "Push notification reminders for upcoming events"
+    ],
+    techStack: ["Flutter", "Dart", "Firebase", "Google Maps API", "FCM", "Bloc"],
+    youtubeId: null
+  },
+  expatio: {
+    name: "Expatio",
+    description: "Expatio is a relocation companion app designed for expats moving to a new country. It provides curated guides on housing, healthcare, banking, and local culture, along with a community forum for peer advice. The app uses Firebase to sync user-generated content and personalised checklists across devices.",
+    features: [
+      "Country and city relocation guides",
+      "Personalised moving checklist with progress tracking",
+      "Community forum for expat peer advice",
+      "Local services directory (housing, healthcare, banking)",
+      "Multi-language support and currency converter"
+    ],
+    techStack: ["Flutter", "Dart", "Firebase Firestore", "Firebase Auth", "REST APIs", "Provider"],
+    youtubeId: null
+  },
+  getfit: {
+    name: "GetFit",
+    description: "GetFit is a personal fitness tracking app built with Flutter that integrates with HealthKit and Google Fit to aggregate workout and health data. Users can set fitness goals, log custom workouts, and monitor progress through interactive charts. The app sends motivational reminders via FCM to keep users on track.",
+    features: [
+      "HealthKit and Google Fit integration for automatic activity sync",
+      "Custom workout builder and exercise library",
+      "Goal setting with progress visualisation charts",
+      "Daily and weekly fitness summary reports",
+      "Motivational push notification reminders"
+    ],
+    techStack: ["Flutter", "Dart", "HealthKit", "Google Fit", "Firebase", "FCM", "GetX"],
+    youtubeId: null
+  },
+  selectnelect: {
+    name: "SelectnElect",
+    description: "SelectnElect is a civic engagement app that simplifies the voting and candidate selection process for local elections. It presents candidate profiles, policy summaries, and voting guides in a clean, accessible Flutter interface. Users can compare candidates side by side and share their choices with their community.",
+    features: [
+      "Candidate profiles with policy summaries",
+      "Side-by-side candidate comparison tool",
+      "Voting guide and polling location finder",
+      "Community sharing and discussion threads",
+      "Election reminders and result notifications"
+    ],
+    techStack: ["Flutter", "Dart", "Firebase", "REST APIs", "Bloc", "Google Maps API"],
+    youtubeId: null
+  },
+  asas: {
+    name: "ASAS",
+    description: "ASAS is a property management platform built with Flutter that streamlines the relationship between landlords and tenants. It handles rent collection, maintenance requests, and lease document management in one place. Real-time notifications via Firebase keep both parties informed of any updates or actions required.",
+    features: [
+      "Digital lease management and document storage",
+      "Online rent collection and payment history",
+      "Maintenance request submission and tracking",
+      "Real-time notifications for landlords and tenants",
+      "Multi-property dashboard for landlords"
+    ],
+    techStack: ["Flutter", "Dart", "Firebase", "FCM", "REST APIs", "Provider"],
+    youtubeId: null
+  }
+};
+
+// ---------------------------------------------------------------------------
+// Modal content lookup
+// ---------------------------------------------------------------------------
+
+/**
+ * Returns the project data object for a known slug, or null for unknown slugs.
+ * Never throws.
+ * @param {string} projectId
+ * @param {Object} projectData
+ * @returns {Object|null}
+ */
+function getModalContent(projectId, projectData) {
+  const entry = projectData[projectId];
+  return entry !== undefined ? entry : null;
+}
+
+// ---------------------------------------------------------------------------
+// CommonJS export shim — allows Vitest to import these functions while the
+// file still works as a plain browser script loaded with <script defer>.
+// ---------------------------------------------------------------------------
+if (typeof module !== 'undefined') {
+  module.exports = { isScrolled, getModalContent, PROJECT_DATA };
+}
+
+// ---------------------------------------------------------------------------
+// DOM initialisation
+// ---------------------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', () => {
+  // ---- Navbar ----
+  const navbar = document.getElementById('navbar');
+  const navMenu = document.querySelector('.nav-menu');
+  const hamburger = document.querySelector('.hamburger');
+
+  // Scroll listener: toggle navbar--scrolled class
+  window.addEventListener('scroll', () => {
+    if (navbar) {
+      navbar.classList.toggle('navbar--scrolled', isScrolled(window.scrollY, 50));
+    }
+  });
+
+  // Hamburger click: toggle nav-menu--open
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('nav-menu--open');
+    });
+  }
+
+  // Nav link clicks: close the mobile menu
+  if (navMenu) {
+    navMenu.querySelectorAll('.nav-link').forEach((link) => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('nav-menu--open');
+      });
+    });
+  }
+});
