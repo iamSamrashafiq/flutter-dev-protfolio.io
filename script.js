@@ -155,17 +155,55 @@ if (typeof module !== 'undefined') {
 // ---------------------------------------------------------------------------
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ---- Scroll Reveal ----
+  const revealEls = document.querySelectorAll('.reveal');
+
+  if (typeof IntersectionObserver === 'undefined') {
+    // Feature not supported — remove reveal class so elements stay visible
+    revealEls.forEach((el) => el.classList.remove('reveal'));
+  } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // User prefers reduced motion — show all immediately
+    revealEls.forEach((el) => el.classList.add('reveal--visible'));
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal--visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    revealEls.forEach((el) => revealObserver.observe(el));
+  }
+
   // ---- Navbar ----
   const navbar = document.getElementById('navbar');
   const navMenu = document.querySelector('.nav-menu');
   const hamburger = document.querySelector('.hamburger');
 
-  // Scroll listener: toggle navbar--scrolled class
+  // ---- Back-to-Top ----
+  const backToTop = document.getElementById('back-to-top');
+
+  // Scroll listener: toggle navbar--scrolled and back-to-top--visible
   window.addEventListener('scroll', () => {
     if (navbar) {
       navbar.classList.toggle('navbar--scrolled', isScrolled(window.scrollY, 50));
     }
+    if (backToTop) {
+      backToTop.classList.toggle('back-to-top--visible', isScrolled(window.scrollY, 300));
+    }
   });
+
+  // Back-to-top click: smooth scroll to top
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 
   // Hamburger click: toggle nav-menu--open
   if (hamburger && navMenu) {
@@ -182,4 +220,64 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // ---- Modal ----
+  const modalOverlay = document.getElementById('modal-overlay');
+  const modalBody = modalOverlay.querySelector('.modal-body');
+
+  function openModal(projectId) {
+    const content = getModalContent(projectId, PROJECT_DATA);
+    if (!content) {
+      console.warn('No project data for:', projectId);
+      return;
+    }
+
+    const featuresHtml = content.features
+      .map((f) => `<li>${f}</li>`)
+      .join('');
+
+    const techHtml = content.techStack
+      .map((t) => `<span class="modal-tech-tag">${t}</span>`)
+      .join('');
+
+    const videoHtml = content.youtubeId
+      ? `<h3>Demo</h3><div class="modal-video"><iframe src="https://www.youtube.com/embed/${content.youtubeId}" allowfullscreen loading="lazy" title="${content.name} demo"></iframe></div>`
+      : '';
+
+    modalBody.innerHTML = `
+      <h2 id="modal-title">${content.name}</h2>
+      <p>${content.description}</p>
+      <h3>Features</h3>
+      <ul>${featuresHtml}</ul>
+      <h3>Tech Stack</h3>
+      <div class="modal-tech-tags">${techHtml}</div>
+      ${videoHtml}
+    `;
+
+    modalOverlay.classList.add('modal--open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modalOverlay.classList.remove('modal--open');
+    document.body.style.overflow = '';
+  }
+
+  // Wire up "View Details" buttons
+  document.querySelectorAll('.btn-details').forEach((btn) => {
+    btn.addEventListener('click', () => openModal(btn.dataset.project));
+  });
+
+  // Close on overlay backdrop click
+  modalOverlay.addEventListener('click', (e) => {
+    if (e.target === modalOverlay) closeModal();
+  });
+
+  // Close on × button
+  modalOverlay.querySelector('.modal-close').addEventListener('click', closeModal);
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
 });

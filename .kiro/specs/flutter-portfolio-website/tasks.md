@@ -80,42 +80,42 @@ Build a three-file static portfolio site (`index.html`, `styles.css`, `script.js
     - Fully readable at 320 px viewport width
     - _Requirements: 4.4, 11.5_
 
-- [ ] 6. Build the Skills Section
-  - [ ] 6.1 Add Skills markup to `index.html`
+- [x] 6. Build the Skills Section
+  - [x] 6.1 Add Skills markup to `index.html`
     - `<section id="skills">` with `<div class="skills-grid">` containing one `<span class="skill-tag reveal">` per skill (all 15 skills from Requirement 5.2)
     - _Requirements: 5.1, 5.2_
 
-  - [ ] 6.2 Style the Skills Section in `styles.css`
+  - [x] 6.2 Style the Skills Section in `styles.css`
     - Glassmorphism tag style: `background: var(--color-surface)`, `border: 1px solid var(--color-border)`, `border-radius: var(--radius-card)`, `backdrop-filter: var(--blur-glass)`
     - `@media (hover: hover)` `:hover` rule: `transform: scale(1.08)` + accent highlight color, `transition: var(--transition-base)`
     - Responsive wrapping flex/grid layout
     - _Requirements: 5.1, 5.3, 5.4, 11.4_
 
-- [ ] 7. Build the Projects Section and cards
-  - [ ] 7.1 Add Projects markup to `index.html`
+- [x] 7. Build the Projects Section and cards
+  - [x] 7.1 Add Projects markup to `index.html`
     - `<section id="projects">` with `<div class="projects-grid">` containing 8 `<article class="project-card reveal" data-project="{slug}">` elements
     - Each card: `<div class="card-thumbnail">` (gradient placeholder), `<div class="card-body">` with `<h3>`, `<p class="card-desc">`, `<div class="card-tags">` (tech stack tags), `<button class="btn-details" data-project="{slug}">View Details</button>`
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 11.7_
 
-  - [ ] 7.2 Style the Projects Section in `styles.css`
+  - [x] 7.2 Style the Projects Section in `styles.css`
     - CSS grid: 1 col < 600 px, 2 col 600–1024 px, 3 col > 1024 px
     - Card: `background: var(--color-surface)`, `border-radius: var(--radius-card)`, `box-shadow: var(--shadow-card)`, glassmorphism border
     - `@media (hover: hover)` `:hover` rule: `transform: scale(1.03)`, `transition: var(--transition-base)`
     - Gradient placeholder for `.card-thumbnail`
     - _Requirements: 6.5, 6.6, 11.3, 11.4, 11.7_
 
-- [ ] 8. Build the Project Modal
-  - [ ] 8.1 Add Modal markup to `index.html`
+- [x] 8. Build the Project Modal
+  - [x] 8.1 Add Modal markup to `index.html`
     - Single `<div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true">` containing `<div class="modal-content">` with a `<button class="modal-close" aria-label="Close">` and a `<div class="modal-body">` placeholder
     - _Requirements: 7.1, 7.3_
 
-  - [ ] 8.2 Style the Modal in `styles.css`
+  - [x] 8.2 Style the Modal in `styles.css`
     - Overlay: `position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: none` (shown via `.modal--open`)
     - `.modal--open`: `display: flex` (centered)
     - `.modal-content`: `max-height: 90vh; overflow-y: auto`, `border-radius: var(--radius-card)`, glassmorphism background, `transform: scale(0.95)` → `scale(1)` + `opacity` transition
     - _Requirements: 7.9, 7.10, 11.3, 11.4_
 
-  - [ ] 8.3 Implement `openModal` and `closeModal` in `script.js`
+  - [x] 8.3 Implement `openModal` and `closeModal` in `script.js`
     - `openModal(projectId)`: call `getModalContent(projectId, PROJECT_DATA)`, guard null result with `console.warn`, populate `.modal-body` with name/description/features/techStack/YouTube iframe, add `modal--open` to overlay, set `document.body.style.overflow = 'hidden'`
     - `closeModal()`: remove `modal--open`, restore `document.body.style.overflow = ''`
     - Attach `click` on `.btn-details` buttons → `openModal(dataset.project)`
@@ -124,38 +124,38 @@ Build a three-file static portfolio site (`index.html`, `styles.css`, `script.js
     - Attach `keydown` on `document` → `closeModal()` on `Escape`
     - _Requirements: 7.1, 7.2, 7.3, 7.4, 7.5, 7.6, 7.7, 7.8_
 
-- [ ] 9. Checkpoint — core sections complete
+- [x] 9. Checkpoint — core sections complete
   - Ensure all tests pass, ask the user if questions arise.
   - Verify in browser: navbar, hero, about, skills, projects grid, and modal all render and function correctly before proceeding.
 
-- [ ] 10. Build the Contact Section
+- [x] 10. Build the Contact Section
   - Add `<section id="contact">` with `<div class="contact-content reveal">` containing icon+link rows for email (`samra@example.com`), LinkedIn, and GitHub
   - All links: `target="_blank" rel="noopener noreferrer"`
   - Style with flex column layout, icon sizing, hover accent color
   - _Requirements: 8.1, 8.2, 8.3, 8.4_
 
-- [ ] 11. Implement Scroll-Reveal system
-  - [ ] 11.1 Add Intersection Observer logic to `script.js`
+- [x] 11. Implement Scroll-Reveal system
+  - [x] 11.1 Add Intersection Observer logic to `script.js`
     - Feature-detect `IntersectionObserver`; if unsupported, remove `reveal` class from all elements so they remain visible
     - Check `window.matchMedia('(prefers-reduced-motion: reduce)').matches`; if true, skip observer setup and make all `.reveal` elements immediately visible
     - Otherwise, create one `IntersectionObserver` with `threshold: 0.15`; on intersection add `reveal--visible` to entry target and unobserve it
     - Observe all `.reveal` elements: `.about-content`, `.skill-tag`, `.project-card`, `.contact-content`
     - _Requirements: 9.1, 9.2, 9.3, 9.4_
 
-  - [ ] 11.2 Add reveal CSS to `styles.css`
+  - [x] 11.2 Add reveal CSS to `styles.css`
     - `.reveal`: `opacity: 0; transform: translateY(30px)`
     - `.reveal--visible`: `opacity: 1; transform: translateY(0); transition: opacity 0.6s ease, transform 0.6s ease`
     - `@media (prefers-reduced-motion: reduce)`: override `.reveal` and `.reveal--visible` to remove transitions and set opacity 1
     - _Requirements: 9.2, 9.4_
 
-- [ ] 12. Implement Back-to-Top button
+- [x] 12. Implement Back-to-Top button
   - Add `<button id="back-to-top" aria-label="Back to top">` markup to `index.html`
   - Style in `styles.css`: `position: fixed; bottom: 2rem; right: 2rem`, hidden state `opacity: 0; pointer-events: none`, visible state `opacity: 1; pointer-events: auto`, `transition: opacity var(--transition-base)`
   - In `script.js` scroll listener: call `isScrolled(window.scrollY, 300)` → toggle visible class on `#back-to-top`
   - Click handler: `window.scrollTo({ top: 0, behavior: 'smooth' })`
   - _Requirements: 10.1, 10.2, 10.3, 10.4_
 
-- [ ] 13. Responsive polish and visual theme pass
+- [x] 13. Responsive polish and visual theme pass
   - Audit all sections at 320 px, 600 px, 768 px, 1024 px, and 1920 px viewport widths; fix any overflow or layout issues
   - Confirm `border-radius` ≥ 12 px on all cards and modals
   - Confirm glassmorphism (`backdrop-filter: blur`) applied to Navbar and cards with `@supports` fallback
