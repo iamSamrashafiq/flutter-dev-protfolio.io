@@ -85,6 +85,21 @@ const PROJECT_DATA = {
     techStack: ["Flutter", "Dart", "Firebase Firestore", "Firebase Auth", "REST APIs", "Provider"],
     youtubeId: null
   },
+  "expatio-chat": {
+    name: "Expatio — Real-Time Chat",
+    description: "A WhatsApp-style real-time chat system built as a core feature of Expatio. Powered by WebSockets for sub-second message delivery, it supports one-on-one and group conversations with live typing indicators, read receipts, and online presence. The UI closely mirrors WhatsApp's familiar chat experience, making it instantly intuitive for users.",
+    features: [
+      "Real-time messaging via WebSockets with sub-second delivery",
+      "One-on-one and group chat support",
+      "Live typing indicators and online/offline presence",
+      "Read receipts (sent, delivered, read)",
+      "WhatsApp-style chat UI with message bubbles and timestamps",
+      "Media and file sharing support",
+      "Message history with infinite scroll"
+    ],
+    techStack: ["Flutter", "Dart", "WebSockets", "Bloc", "REST APIs"],
+    youtubeId: null
+  },
   getfit: {
     name: "GetFit",
     description: "GetFit is a personal fitness tracking app built with Flutter that integrates with HealthKit and Google Fit to aggregate workout and health data. Users can set fitness goals, log custom workouts, and monitor progress through interactive charts. The app sends motivational reminders via FCM to keep users on track.",

@@ -643,6 +643,11 @@ button {
   flex-shrink: 0;
 }
 
+/* Chat project — teal/green gradient to distinguish from default */
+.card-thumbnail--chat {
+  background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+}
+
 /* ---- Card Body ---- */
 .card-body {
   padding: var(--space-card-pad);
