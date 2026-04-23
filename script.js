@@ -52,7 +52,7 @@ const PROJECT_DATA = {
       "186c0oZKAHa11ZLBXaRWfIRe6dL6boUT9",
       "1bXIXC_C2CPxrbGnq9K2_mdNODj7ELGWp"
     ],
-    youtubeId: null
+    youtubeId: "7q1ZCX5JGa0"
   },
   lama: {
     name: "Lama",
@@ -85,7 +85,7 @@ const PROJECT_DATA = {
       "1-FoQbiqYWxHu4dnAsc5AuWfuUnw5Z2TG",
       "1LgJnJABvlxlPMqb-lYusHbTSw9dKcwSX"
     ],
-    youtubeId: null
+    youtubeId: "xrbrGvAx3fQ"
   },
   expatio: {
     name: "Expatio",
@@ -110,7 +110,7 @@ const PROJECT_DATA = {
       "1T0HKIPltGKEkqVDjFu-C3foOp6km52qK",
       "1IACYqwoMKdaLicTJKKMVxvNWM_acjecZ"
     ],
-    youtubeId: null
+    youtubeId: "Fv03uaYunEg?start=1"
   },
   "expatio-chat": {
     name: "Expatio — Real-Time Chat",
@@ -126,7 +126,7 @@ const PROJECT_DATA = {
     ],
     techStack: ["Flutter", "Dart", "WebSockets", "Bloc", "REST APIs"],
     images: [],
-    youtubeId: null
+    youtubeId: "H8UqLO6LKIg?start=1"
   },
   getfit: {
     name: "GetFit",
@@ -181,7 +181,7 @@ const PROJECT_DATA = {
       "1BykaaR0UL0FwUBrFwIVfmVJrcnhRUh93",
       "1wY5UCz7L89gbUp3hc7294Ct1n0OHosE-"
     ],
-    youtubeId: null
+    youtubeId: "GEBIoI3qjq4"
   }
 };
 
