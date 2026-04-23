@@ -31,6 +31,7 @@ const PROJECT_DATA = {
       "In-app chat between driver and technician"
     ],
     techStack: ["Flutter", "Dart", "Firebase", "Google Maps API", "FCM", "REST APIs"],
+    images: [],
     youtubeId: null
   },
   "sushi-guide": {
@@ -44,6 +45,13 @@ const PROJECT_DATA = {
       "Personal favourites list with offline access"
     ],
     techStack: ["Flutter", "Dart", "Firebase Firestore", "Google Maps API", "Provider"],
+    images: [
+      "1o2MydzbporO_F1BwV2Oy9PVr2R7yhy83",
+      "1Mug9cuY0QLSipzgk0i6_f276rROoIjgS",
+      "1pfVMVCUGWAEVWEKo2_s-YjQw-2atUKp6",
+      "186c0oZKAHa11ZLBXaRWfIRe6dL6boUT9",
+      "1bXIXC_C2CPxrbGnq9K2_mdNODj7ELGWp"
+    ],
     youtubeId: null
   },
   lama: {
@@ -57,6 +65,7 @@ const PROJECT_DATA = {
       "Session ratings and tutor review system"
     ],
     techStack: ["Flutter", "Dart", "Firebase", "WebSockets", "REST APIs", "GetX"],
+    images: [],
     youtubeId: null
   },
   junction: {
@@ -70,6 +79,12 @@ const PROJECT_DATA = {
       "Push notification reminders for upcoming events"
     ],
     techStack: ["Flutter", "Dart", "Firebase", "Google Maps API", "FCM", "Bloc"],
+    images: [
+      "1WrU8UAJPlpyIJCnUHyDt4mQBwng0i1xH",
+      "1MMnUxJkonhuNmy3-Ag8bnZUe5O9BHIbh",
+      "1-FoQbiqYWxHu4dnAsc5AuWfuUnw5Z2TG",
+      "1LgJnJABvlxlPMqb-lYusHbTSw9dKcwSX"
+    ],
     youtubeId: null
   },
   expatio: {
@@ -83,6 +98,18 @@ const PROJECT_DATA = {
       "Multi-language support and currency converter"
     ],
     techStack: ["Flutter", "Dart", "Firebase Firestore", "Firebase Auth", "REST APIs", "Provider"],
+    images: [
+      "1GemN5X6bo8pt_xw0dciV3fWOvMpeKwZv",
+      "114Z9AOazVAZv24CXz6S6ACes64m-w7RF",
+      "1kt6a230YqeR-ePVIomWrrckaqMbsFMUI",
+      "1FzCm7P6Tj6iIp-L-Qc-XMTgira4BxR7M",
+      "1my0EwjCrNAs7X-R7b_-4F_Yc02Vnv0wY",
+      "16fHYcaykq4TFBq6gSmEnVyqGoCc7Ky73",
+      "1UZNLsHFV7gm_KZeWHygygiy8rOaTI-tO",
+      "1X1Q7N4iFgS-7680E1K98r86kDA6N3A1B",
+      "1T0HKIPltGKEkqVDjFu-C3foOp6km52qK",
+      "1IACYqwoMKdaLicTJKKMVxvNWM_acjecZ"
+    ],
     youtubeId: null
   },
   "expatio-chat": {
@@ -98,6 +125,7 @@ const PROJECT_DATA = {
       "Message history with infinite scroll"
     ],
     techStack: ["Flutter", "Dart", "WebSockets", "Bloc", "REST APIs"],
+    images: [],
     youtubeId: null
   },
   getfit: {
@@ -111,6 +139,12 @@ const PROJECT_DATA = {
       "Motivational push notification reminders"
     ],
     techStack: ["Flutter", "Dart", "HealthKit", "Google Fit", "Firebase", "FCM", "GetX"],
+    images: [
+      "1EqikrkMbl6FUO2hxlqpwediB8_rBPHgI",
+      "1wTsZKb_1G26hTE3wEu94JVSkE3nVFBDA",
+      "1J_WgNoUUaAn3YRQalyR1u9jLvI5QWZXN",
+      "1Y4vMv2gwz77-rAE6jCVlxSg4yuKl0fA4"
+    ],
     youtubeId: null
   },
   selectnelect: {
@@ -124,6 +158,7 @@ const PROJECT_DATA = {
       "Election reminders and result notifications"
     ],
     techStack: ["Flutter", "Dart", "Firebase", "REST APIs", "Bloc", "Google Maps API"],
+    images: [],
     youtubeId: null
   },
   asas: {
@@ -137,6 +172,15 @@ const PROJECT_DATA = {
       "Multi-property dashboard for landlords"
     ],
     techStack: ["Flutter", "Dart", "Firebase", "FCM", "REST APIs", "Provider"],
+    images: [
+      "11DHtI0BLeNuVAYwCVlQ59AbbRqcsw_o3",
+      "1JEQiOTxSjvhnn88hjTyY4LPW5Q1rF6ak",
+      "1UL_NLl4ZGckf1Q2zlbhKUbaeilYjdWz_",
+      "15t8WCdUKo4--y8ApAMHQmLEDnZ1SXsDs",
+      "1h4fFBFjDdxB5PRcoCPDws5cNl7MhfR99",
+      "1BykaaR0UL0FwUBrFwIVfmVJrcnhRUh93",
+      "1wY5UCz7L89gbUp3hc7294Ct1n0OHosE-"
+    ],
     youtubeId: null
   }
 };
@@ -261,12 +305,39 @@ document.addEventListener('DOMContentLoaded', () => {
       .map((t) => `<span class="modal-tech-tag">${t}</span>`)
       .join('');
 
+    // Image slideshow — only rendered when images array is non-empty
+    let galleryHtml = '';
+    if (content.images && content.images.length > 0) {
+      const imgs = content.images
+        .map((id, i) =>
+          `<img class="gallery-slide${i === 0 ? ' gallery-slide--active' : ''}"
+               src="https://drive.google.com/uc?export=view&id=${id}"
+               alt="${content.name} screenshot ${i + 1}"
+               loading="lazy" />`
+        )
+        .join('');
+
+      const dots = content.images.length > 1
+        ? `<div class="gallery-dots">${content.images
+            .map((_, i) => `<button class="gallery-dot${i === 0 ? ' gallery-dot--active' : ''}" data-index="${i}" aria-label="Image ${i + 1}"></button>`)
+            .join('')}</div>`
+        : '';
+
+      const arrows = content.images.length > 1
+        ? `<button class="gallery-arrow gallery-arrow--prev" aria-label="Previous image"><i class="ri-arrow-left-s-line"></i></button>
+           <button class="gallery-arrow gallery-arrow--next" aria-label="Next image"><i class="ri-arrow-right-s-line"></i></button>`
+        : '';
+
+      galleryHtml = `<div class="modal-gallery">${arrows}${imgs}${dots}</div>`;
+    }
+
     const videoHtml = content.youtubeId
       ? `<h3>Demo</h3><div class="modal-video"><iframe src="https://www.youtube.com/embed/${content.youtubeId}" allowfullscreen loading="lazy" title="${content.name} demo"></iframe></div>`
       : '';
 
     modalBody.innerHTML = `
       <h2 id="modal-title">${content.name}</h2>
+      ${galleryHtml}
       <p>${content.description}</p>
       <h3>Features</h3>
       <ul>${featuresHtml}</ul>
@@ -274,6 +345,25 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="modal-tech-tags">${techHtml}</div>
       ${videoHtml}
     `;
+
+    // Wire up gallery controls if multiple images
+    if (content.images && content.images.length > 1) {
+      const slides = modalBody.querySelectorAll('.gallery-slide');
+      const dots = modalBody.querySelectorAll('.gallery-dot');
+      let current = 0;
+
+      function goTo(index) {
+        slides[current].classList.remove('gallery-slide--active');
+        dots[current].classList.remove('gallery-dot--active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('gallery-slide--active');
+        dots[current].classList.add('gallery-dot--active');
+      }
+
+      modalBody.querySelector('.gallery-arrow--prev').addEventListener('click', () => goTo(current - 1));
+      modalBody.querySelector('.gallery-arrow--next').addEventListener('click', () => goTo(current + 1));
+      dots.forEach((dot) => dot.addEventListener('click', () => goTo(Number(dot.dataset.index))));
+    }
 
     modalOverlay.classList.add('modal--open');
     document.body.style.overflow = 'hidden';
