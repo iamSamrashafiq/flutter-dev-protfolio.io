@@ -664,9 +664,14 @@ button {
   background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-alt) 100%);
 }
 
-/* Chat project — teal/green gradient to distinguish from default */
+/* Chat project — teal/green gradient */
 .card-thumbnail--chat {
   background: linear-gradient(135deg, #0ea5e9 0%, #10b981 100%);
+}
+
+/* Snake Xenzia — retro green arcade gradient */
+.card-thumbnail--snake {
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 50%, #166534 100%);
 }
 
 /* ---- Card Body ---- */

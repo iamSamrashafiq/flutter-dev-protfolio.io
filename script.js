@@ -209,6 +209,23 @@ const PROJECT_DATA = {
       "1wY5UCz7L89gbUp3hc7294Ct1n0OHosE-"
     ],
     youtubeId: "GEBIoI3qjq4"
+  },
+  "snake-xenzia": {
+    name: "Snake Xenzia",
+    description: "Snake Xenzia is a modern 2D arcade game inspired by the iconic Nokia Snake, rebuilt using the Flame Engine to deliver smooth performance and real-time gameplay on modern mobile devices. The game preserves the nostalgic mechanics of the original while enhancing it with improved visuals, responsiveness, and customizable themes. As the snake grows, the game dynamically increases in difficulty — encouraging strategic movement and quick decision-making.",
+    features: [
+      "Classic Snake mechanics faithfully recreated with smooth animations",
+      "Dual control system: on-screen directional buttons + gesture swipe controls",
+      "5 customizable visual themes for personalized gameplay",
+      "Progressive difficulty — speed and complexity increase as the snake grows",
+      "Collision detection system for wall and self-collision",
+      "2D grid-based movement system for precise positioning",
+      "Optimized game loop for consistent frame rates across devices",
+      "Expandable architecture for future leaderboards, levels, and sound effects"
+    ],
+    techStack: ["Flutter", "Flame Engine", "GetX", "Custom Game Loop", "Gesture Detection", "Collision Detection"],
+    images: [],
+    youtubeId: null
   }
 };
 
