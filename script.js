@@ -33,7 +33,10 @@ const PROJECT_DATA = {
       "API-driven architecture for scalable service and branch management"
     ],
     techStack: ["Flutter", "Dart", "REST APIs", "Firebase FCM", "Firebase Auth", "Localization (i18n)"],
-    images: [],
+    images: [
+      "10jyl_U6OEokpf--FApKGMBkH-eggyVFi",
+      "1yzkJ2ezmGfVMGDbnoVC0lKg36Z-Q2dXi"
+    ],
     youtubeId: null
   },
   "sushi-guide": {
