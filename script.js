@@ -174,10 +174,16 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0, rootMargin: '0px 0px -40px 0px' }
     );
 
     revealEls.forEach((el) => revealObserver.observe(el));
+
+    // Safety fallback: if any elements are still hidden after 1.5s
+    // (e.g. observer didn't fire for above-the-fold content), reveal them all.
+    setTimeout(() => {
+      revealEls.forEach((el) => el.classList.add('reveal--visible'));
+    }, 1500);
   }
 
   // ---- Navbar ----

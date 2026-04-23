@@ -882,6 +882,8 @@ button {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
+  /* Never block clicks even while invisible */
+  pointer-events: auto;
 }
 
 .reveal--visible {
