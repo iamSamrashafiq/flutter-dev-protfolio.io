@@ -33,6 +33,9 @@ const PROJECT_DATA = {
       "API-driven architecture for scalable service and branch management"
     ],
     techStack: ["Flutter", "Dart", "REST APIs", "Firebase FCM", "Firebase Auth", "Localization (i18n)"],
+    storeLinks: {
+      appStore: "https://apps.apple.com/pk/app/ityrecare/id6449173529"
+    },
     images: [
       "10jyl_U6OEokpf--FApKGMBkH-eggyVFi",
       "1yzkJ2ezmGfVMGDbnoVC0lKg36Z-Q2dXi"
@@ -51,6 +54,10 @@ const PROJECT_DATA = {
       "Modular and scalable architecture for product and order management"
     ],
     techStack: ["Flutter", "Dart", "Firebase Firestore", "Google Maps API", "Provider", "REST APIs"],
+    storeLinks: {
+      playStore: "https://play.google.com/store/apps/details?id=com.sushiguidelb.app",
+      appStore: "https://apps.apple.com/pk/app/sushiguide-shop/id6472249409"
+    },
     images: [
       "1o2MydzbporO_F1BwV2Oy9PVr2R7yhy83",
       "1Mug9cuY0QLSipzgk0i6_f276rROoIjgS",
@@ -72,6 +79,9 @@ const PROJECT_DATA = {
       "API-driven service listings and package configuration"
     ],
     techStack: ["Flutter", "Dart", "GetX", "REST APIs", "Localization (i18n)", "RTL Support"],
+    storeLinks: {
+      appStore: "https://apps.apple.com/pk/app/lama-%D9%84%D9%85%D8%A9/id6738125183"
+    },
     images: [
       "1cZUOyyipfQ0XuSyUVtXHp8AGRS3iS0Mf",
       "1fkJv9QYPf6HZ_namiCiLBF1R_JyLydoP",
@@ -118,6 +128,9 @@ const PROJECT_DATA = {
       "Full Dark and Light theme support"
     ],
     techStack: ["Flutter", "Dart", "GetX", "WebSockets", "Firebase Analytics", "Firebase Crashlytics", "Firebase Remote Config", "FCM", "Google Maps API", "Branch.io", "REST APIs"],
+    storeLinks: {
+      playStore: "https://play.google.com/store/apps/details?id=com.prod.expatio&pcampaignid=web_share"
+    },
     images: [
       "1GemN5X6bo8pt_xw0dciV3fWOvMpeKwZv",
       "114Z9AOazVAZv24CXz6S6ACes64m-w7RF",
@@ -185,6 +198,10 @@ const PROJECT_DATA = {
       "Centralized home feed for politician updates and announcements"
     ],
     techStack: ["Flutter", "Dart", "GetX", "REST APIs", "Search & Comparison Algorithms"],
+    storeLinks: {
+      playStore: "https://play.google.com/store/apps/details?id=com.app.selectnelect",
+      appStore: "https://apps.apple.com/pk/app/selectnelect/id6471562386"
+    },
     images: [
       "1Iuyl5qtdptanEzlCL4wTKDZlB3lVDPGI",
       "1uUuGM7tUse7L73uYnzYTTv87rVa8ajJQ",
@@ -234,6 +251,46 @@ const PROJECT_DATA = {
     ],
     techStack: ["Flutter", "Flame Engine", "GetX", "Custom Game Loop", "Gesture Detection", "Collision Detection"],
     images: [],
+    youtubeId: null
+  },
+  auga: {
+    name: "Auga Water & Beverages",
+    description: "Auga is a full-featured e-commerce mobile application designed for seamless ordering of water and beverage products. The app focuses on performance, user experience, and real-time order management — with optimized API integrations and a clean Provider-based architecture ensuring fast, reliable data flow throughout the shopping experience.",
+    features: [
+      "Product listing with filtering and detailed product views",
+      "Smooth cart and checkout experience",
+      "Real-time order tracking and management",
+      "Provider-based state management for scalable architecture",
+      "Optimized API response handling for fast data flow",
+      "Performance-tuned UI rendering for smooth interactions"
+    ],
+    techStack: ["Flutter", "Dart", "Provider", "REST APIs"],
+    images: [],
+    youtubeId: null
+  },
+  tajer: {
+    name: "Tajer",
+    description: "Tajer is a scalable multi-vendor e-commerce platform built around a multi-role ecosystem connecting customers, suppliers, and delivery drivers within a single application. Each role has dedicated features and flows — customers browse and order, suppliers manage inventory and fulfil orders, and drivers handle delivery assignments and status updates — all backed by robust API integrations and clean Provider-based architecture.",
+    features: [
+      "Multi-role system: Customer, Supplier, and Delivery Driver modules",
+      "Advanced search, category-based navigation, and product variations",
+      "Secure checkout, order placement, and real-time order tracking across all roles",
+      "Supplier dashboard for product, inventory, and order management",
+      "Delivery driver workflow: order assignment and status updates",
+      "Robust API integrations for dynamic content and real-time updates",
+      "Provider state management for clean, scalable architecture",
+      "Performance optimization and bug fixing for smooth user experience"
+    ],
+    techStack: ["Flutter", "Dart", "Provider", "REST APIs"],
+    images: [
+      "1Timmgg4C3BuRVe5pCzU1gPxv2dQW3N9u",
+      "1B5LL_LBOoIwxiClD9jNGgUKZG04zeQ65",
+      "1dY-Xt8CZr1xgnW8qFv4dw4rvu7GHMI6g",
+      "1M7q7a9xeXdvBNzoPd-yFtuQ0SPVP4GEL",
+      "1FhHKGSJ9uv0NU5a5pTHcOMZbOBVL2foV",
+      "15waOvUccoBE9vTZPEAp6mvi9xTrl_lzz",
+      "1bzqm46qpLPvtWX0a1_YQvYgq1qe8IVv3"
+    ],
     youtubeId: null
   }
 };
@@ -384,6 +441,25 @@ document.addEventListener('DOMContentLoaded', () => {
       galleryHtml = `<div class="modal-gallery">${arrows}${imgs}${dots}</div>`;
     }
 
+    // Store links — Play Store / App Store badges
+    let storeHtml = '';
+    if (content.storeLinks) {
+      const links = [];
+      if (content.storeLinks.playStore) {
+        links.push(`<a class="store-badge store-badge--play" href="${content.storeLinks.playStore}" target="_blank" rel="noopener noreferrer">
+          <i class="ri-google-play-fill"></i> Google Play
+        </a>`);
+      }
+      if (content.storeLinks.appStore) {
+        links.push(`<a class="store-badge store-badge--apple" href="${content.storeLinks.appStore}" target="_blank" rel="noopener noreferrer">
+          <i class="ri-apple-fill"></i> App Store
+        </a>`);
+      }
+      if (links.length) {
+        storeHtml = `<div class="modal-store-links">${links.join('')}</div>`;
+      }
+    }
+
     const videoHtml = content.youtubeId
       ? `<h3>Demo</h3><div class="modal-video"><iframe src="https://www.youtube.com/embed/${content.youtubeId}" allowfullscreen loading="lazy" title="${content.name} demo"></iframe></div>`
       : '';
@@ -391,6 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalBody.innerHTML = `
       <h2 id="modal-title">${content.name}</h2>
       ${galleryHtml}
+      ${storeHtml}
       <p>${content.description}</p>
       <h3>Features</h3>
       <ul>${featuresHtml}</ul>
